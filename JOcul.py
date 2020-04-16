@@ -27,13 +27,13 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == K_LEFT:
-                movex -= 0.1
+                movex -= 0.3
             if event.key == K_RIGHT:
-                movex =+ 0.1
+                movex =+ 0.3
             if event.key == K_UP:
-                movey -= 0.1
+                movey -= 0.3
             if event.key == K_DOWN:
-                movey += 0.1
+                movey += 0.3
         if event.type == pygame.KEYUP:
             if event.key == K_LEFT or event.key == K_RIGHT:
                 movex = 0
