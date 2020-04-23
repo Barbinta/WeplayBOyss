@@ -24,7 +24,7 @@ glont_1_y = 400
 glont_2_x = 510 
 glont_2_y = 400
 
-boss_x = 400
+boss_x = 450
 boss_y = 100
 
 cursor_x = 400
@@ -261,13 +261,13 @@ while running:
             if player_1_x <= 0:
                 player_1_x = 0 
             elif player_1_x >= 736:
-                player_1_x = 736
+                player_1_x = 0
                 Camera_2 = False
                 Camera_3 = True      
             if player_1_y <= 0:
                 player_1_y = 0 
             elif player_1_y >= 536:
-                player_1_y = 536
+                player_1_y = 0
                 Camera_2 = False
                 Camera_3 = True  
 
@@ -383,23 +383,39 @@ while running:
             if coliziune( player_1_x, player_1_y, ammo_boss_x, ammo_boss_y ):
                 ammo_boss_x = boss_x
                 ammo_boss_y = boss_y
+                damage_player += 1
 
         if player_folosit == 2:
             if coliziune( player_2_x, player_2_y, ammo_boss_x, ammo_boss_y ):
                 ammo_boss_x = boss_x
                 ammo_boss_y = boss_y
+                damage_player += 1
 
-        if ammo_boss_y <= 599:
+        if ammo_boss_y >= 599:
             ammo_boss_x = boss_x
             ammo_boss_y = boss_y
 
-        pygame.draw.rect(screen, (255, 0, 0),( boss_x + 6 , boss_y + 63, 53 - (10 * damage) , 10) )
+        pygame.draw.rect(screen, (255, 0, 0),( boss_x + 6 , boss_y + 63, 53 - (27 * damage) , 10) )
         
         if player_folosit == 1:
-            pygame.draw.rect(screen, (255, 0, 0),( player_1_x + 6 , player_1_y + 63, 53 - (27 * damage_player) , 10) )
+            pygame.draw.rect(screen, (255, 0, 0),( player_1_x + 6 , player_1_y + 63, 53 - (25 * damage_player) , 10) )
 
         if player_folosit == 2:
-            pygame.draw.rect(screen, (255, 0, 0),( player_2_x + 6 , player_2_y + 63, 53 - (25 * damage_player) , 10) )    
+            pygame.draw.rect(screen, (255, 0, 0),( player_2_x + 6 , player_2_y + 63, 53 - (27 * damage_player) , 10) )
+
+        if damage == 2:
+            Camera_4 = False
+            Camera_6 = True
+
+        if player_folosit == 1:
+            if damage_player == 3:
+                Camera_4 = False
+                Camera_5 = True  
+
+        if player_folosit == 2:
+            if damage_player == 2:
+                Camera_4 = False
+                Camera_5 = True                  
                 
 
 
@@ -460,6 +476,14 @@ while running:
                 player_2_y = 0 
             elif player_2_y >= 536:
                 player_2_y = 536
+
+# Camera 5
+    if Camera_5:
+        screen.blit( Camera_5_background, ( 0, 0 )) 
+
+# Camera 6  
+    if Camera_6:
+        screen.blit( Camera_6_background, ( 0, 0 ))                     
                     
 
    
